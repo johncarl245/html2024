@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+    <style>
+        /* Your styles for the next page go here */
+        h1 {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Add padding for better appearance */
+    border-radius: 15px; /* Rounded corners */
+}
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0;
+            overflow: hidden;
+            background: url(images/electronics1.jpg) center/cover; /* Change this line */
+            height: 100vh;
+        }
+
+        /* Style for the container */
+        .component-info-container {
+            background-color: rgba(97, 107, 247, 0.8);
+            padding: 20px;
+            margin: 10px; /* Add margin for spacing */
+            border-radius: 10px;
+            display: none; /* Initially hidden */
+            text-align: left; /* Align text to the left */
+            width: 50%; /* Adjusted width for better balance */
+        }
+
+        /* Style for left-aligned input */
+        .component-input {
+    text-decoration-color: black;
+    background-color: black;
+    align-self: flex-start;
+    margin-left: 20px;
+    margin-bottom: 50px;
+    width: 20%;
+    padding: 10px; /* Add padding for better appearance */
+    border-radius: 8px; /* Rounded corners */
+}
+        }
+
+        /* Style for the back button */
+        .back-button {
+            margin-top: 10px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Electronic Page</h1>
+
+    <!-- Add a container for resistor information -->
+    <div class="component-info-container" id="resistorInfo">
+        <h2>Resistor</h2>
+        <p>A resistor is a passive two-terminal electrical component that resists the flow of current.</p>
+        <!-- Add a back button -->
+        <p class="back-button" onclick="hideComponentInfo('resistorInfo')">Back</p>
+    </div>
+
+    <!-- Add a left-aligned input for "resistor" -->
+    <input type="text" placeholder="resistor" class="component-input" id="resistorInput">
+
+    <!-- Add a container for diode information -->
+    <div class="component-info-container" id="diodeInfo">
+        <h2>Diode</h2>
+        <p>A diode is a semiconductor device that allows current to flow in one direction only.</p>
+        <!-- Add a back button -->
+        <p class="back-button" onclick="hideComponentInfo('diodeInfo')">Back</p>
+    </div>
+
+    <!-- Add a left-aligned input for "diode" -->
+    <input type="text" placeholder="diode" class="component-input" id="diodeInput">
+
+    <!-- Add a container for transistor information -->
+    <div class="component-info-container" id="transistorInfo">
+        <h2>Transistor</h2>
+        <p>A transistor is a semiconductor device that amplifies or switches electronic signals.</p>
+        <!-- Add a back button -->
+        <p class="back-button" onclick="hideComponentInfo('transistorInfo')">Back</p>
+    </div>
+
+    <!-- Add a left-aligned input for "transistor" -->
+    <input type="text" placeholder="transistor" class="component-input" id="transistorInput">
+
+    <!-- Add a container for integrated circuit information -->
+    <div class="component-info-container" id="icInfo">
+        <h2>Integrated Circuit</h2>
+        <p>An integrated circuit is a set of interconnected electronic components on a small semiconductor wafer.</p>
+        <!-- Add a back button -->
+        <p class="back-button" onclick="hideComponentInfo('icInfo')">Back</p>
+    </div>
+
+    <!-- Add a left-aligned input for "integrated circuit" -->
+    <input type="text" placeholder="integrated circuit" class="component-input" id="icInput">
+
+    <!-- Add a container for capacitor information -->
+    <div class="component-info-container" id="capacitorInfo">
+        <h2>Capacitor</h2>
+        <p>A capacitor is a passive electronic component that stores electrical energy in an electric field.</p>
+        <!-- Add a back button -->
+        <p class="back-button" onclick="hideComponentInfo('capacitorInfo')">Back</p>
+    </div>
+
+    <!-- Add a left-aligned input for "capacitor" -->
+    <input type="text" placeholder="capacitor" class="component-input" id="capacitorInput">
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Retrieve name and password from the URL
+        var name = getQueryParam('name');
+        var password = getQueryParam('password');
+
+        // Validate the name and password
+        if (name === 'john carl' && password === 'john') {
+            // Display information when a component is clicked
+            function showComponentInfo(componentType, inputId) {
+                var inputElement = document.getElementById(inputId);
+                var componentInfoContainer = document.getElementById(componentType + 'Info');
+                var backButton = componentInfoContainer.querySelector('.back-button');
+
+                inputElement.addEventListener('click', function () {
+                    // Hide all other component info containers
+                    hideAllComponentInfo();
+
+                    componentInfoContainer.style.display = 'block';
+                    backButton.style.display = 'block';
+                });
+            }
+
+            // Function to hide all component info containers
+            function hideAllComponentInfo() {
+                var componentInfoContainers = document.querySelectorAll('.component-info-container');
+                componentInfoContainers.forEach(function (container) {
+                    container.style.display = 'none';
+
+                    // Hide back buttons
+                    var backButton = container.querySelector('.back-button');
+                    if (backButton) {
+                        backButton.style.display = 'none';
+                    }
+                });
+            }
+
+            // Function to hide component information
+            function hideComponentInfo(componentInfoId) {
+                var componentInfoContainer = document.getElementById(componentInfoId);
+                var backButton = componentInfoContainer.querySelector('.back-button');
+
+                componentInfoContainer.style.display = 'none';
+                backButton.style.display = 'none';
+            }
+
+            // Show information for each component type
+            showComponentInfo('resistor', 'resistorInput');
+            showComponentInfo('diode', 'diodeInput');
+            showComponentInfo('transistor', 'transistorInput');
+            showComponentInfo('ic', 'icInput');
+            showComponentInfo('capacitor', 'capacitorInput');
+        } else {
+            // Redirect to an error page or show an error message
+            document.write("<p>Access denied. Invalid credentials.</p>");
+        }
+    </script>
+</body>
+
+</html>
