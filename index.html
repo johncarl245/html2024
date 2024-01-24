@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        @keyframes moveComponent {
+            0% {
+                transform: translateX(1500px);
+            }
+            
+            100% {
+                transform: translateX(calc(-100% - 1500px));
+            }
+        }
+
+        @keyframes moveComponent1 {
+            0% {
+                transform: translateX(1500px);
+            }
+            100% {
+                transform: translateX(calc(100% - 1500px));
+            }
+        }
+
+        @keyframes moveComponent2 {
+            0% {
+                transform: translateX(1500px);
+            }
+            100% {
+                transform: translateX(calc(100% - 1500px));
+            }
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url('images/electronics.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .component,
+        .component1,
+        .component2 {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+        .resistor,
+        .diode,
+        .transistor,
+        .resistor1,
+        .diode1,
+        .diode2,
+        .transistor1,
+        .transistor2 {
+            width: 40px;
+            height: 40px;
+        }
+
+        .resistor {
+            top: 0px;
+            left: 20px;
+        }
+
+        .diode {
+            top: 100px;
+            left: 120px;
+        }
+
+        .transistor {
+            top: 200px;
+            left: 220px;
+        }
+
+        .resistor1 {
+            top: 300px;
+            left: 320px;
+        }
+
+        .diode1 {
+            top: 400px;
+            left: 420px;
+        }
+
+        .diode2 {
+            top: 500px;
+            left: 520px;
+        }
+
+        .transistor1 {
+            top: 600px;
+            left: 620px;
+        }
+
+        .transistor2 {
+            top: 700px;
+            left: 720px;
+        }
+
+        .component img,
+        .component1 img,
+        .component2 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .component {
+            animation: moveComponent 4s linear infinite;
+        }
+
+        .component1 {
+            animation: moveComponent1 4s linear infinite;
+        }
+
+        .component2 {
+            animation: moveComponent2 4s linear infinite;
+        }
+
+        .form-container {
+            position: absolute;
+            text-align: center;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            background-color: rgba(39, 212, 239, 0.8);
+            padding: 20px;
+            width: 300px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+
+        button {
+            width: 30%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="component resistor">
+        <img src="images/component.jpg" alt="">
+    </div>
+    <div class="component diode">
+        <img src="images/component1.jpg" alt="">
+    </div>
+    <div class="component transistor">
+        <img src="images/component2.jpg" alt="">
+    </div>
+
+    <div class="component1 resistor1">
+        <img src="images/component.jpg" alt="">
+    </div>
+    <div class="component1 diode1">
+        <img src="images/component1.jpg" alt="">
+    </div>
+    <div class="component1 diode2">
+        <img src="images/component1.jpg" alt="">
+    </div>
+
+    <div class="component2 transistor1">
+        <img src="images/component2.jpg" alt="">
+    </div>
+
+    <div class="component2 transistor2">
+        <img src="images/component2.jpg" alt="">
+    </div>
+
+    
+    <div class="form-container">
+        <form id="myForm" onsubmit="return redirectToNextPage()">
+            <input type="text" placeholder="Name" id="nameInput">
+            <br>
+            <input type="password" placeholder="Password" id="passwordInput">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function redirectToNextPage() {
+            // Get input values
+            var nameInput = document.getElementById('nameInput').value;
+            var passwordInput = document.getElementById('passwordInput').value;
+    
+            // Validation logic
+            if (nameInput.toLowerCase() === 'john carl' && passwordInput.toLowerCase() === 'john') {
+                // Create URL with query parameters
+                var nextPageUrl = "next-page.html?name=" + encodeURIComponent(nameInput) +
+                    "&password=" + encodeURIComponent(passwordInput);
+    
+                // Redirect to the next page
+                window.location.href = nextPageUrl;
+    
+                // Prevent the form from submitting normally
+                return false;
+            } else {
+                alert("Invalid credentials. Please enter the correct name and password.");
+                return false;
+            }
+        }
+    </script>
+    
+
+   
+</body>
+</html>
